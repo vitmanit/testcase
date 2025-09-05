@@ -1,0 +1,7 @@
+1) Скачать проект, открыть
+2) Собрать докер файл командой: docker-compose up -d --build
+3) Применяем миграцию: docker-compose exec web alembic upgrade head
+
+Если же не видит миграцию 
+1) Сначала создаём её: docker-compose exec web alembic revision --autogenerate -m "create tables"
+2) Затем применяем: docker-compose exec web alembic upgrade head
