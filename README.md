@@ -1,5 +1,4 @@
-1) Применяем миграцию docker-compose exec web alembic upgrade head
-2) Всё работает. 
+Применяем миграцию: docker-compose exec web alembic upgrade head
 
 
 Если же не видит миграцию 
