@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_serializer
 from datetime import datetime
 
 class CreateAnswer(BaseModel):
@@ -17,6 +17,10 @@ class AnswerResponse(BaseModel):
     text: str
     created_at: datetime
 
+    @field_serializer('created_at')
+    def serialize_created_at(self, value: datetime) -> str:
+        return value.strftime("%Y-%m-%d %H:%M:%S")  # Формат: "2025-09-05 08:35:03"
+
     class Config:
         from_attributes = True
 
@@ -25,6 +29,10 @@ class QuestionResponse(BaseModel):
     text: str
     created_at: datetime
     answers: list[AnswerResponse] = []
+
+    @field_serializer('created_at')
+    def serialize_created_at(self, value: datetime) -> str:
+        return value.strftime("%Y-%m-%d %H:%M:%S")  # Формат: "2025-09-05 08:35:03"
 
     class Config:
         from_attributes = True
